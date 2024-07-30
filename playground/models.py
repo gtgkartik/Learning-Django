@@ -40,4 +40,4 @@ class Order(models.Model):
 class Address(models.Models):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE) # OneToOneField with on_delete=models.CASCADE, this means that if the parent object is deleted, then the child object will also be deleted
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, primary_key=true) # OneToOneField with on_delete=models.CASCADE, this means that if the parent object is deleted, then the child object will also be deleted, the primary key has been set to true coz we want to make the customer as the primary key and it will be our one to one relationship
