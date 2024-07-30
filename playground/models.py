@@ -34,3 +34,10 @@ class Order(models.Model):
     ]
     placed_at = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(max_length=1, choices=payment_status)
+    
+    
+# here Address is a child and the parent is the Customer
+class Address(models.Models):
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE) # OneToOneField with on_delete=models.CASCADE, this means that if the parent object is deleted, then the child object will also be deleted
