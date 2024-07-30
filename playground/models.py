@@ -9,11 +9,28 @@ class Product (models.Model):  # this basically means we are creating a new clas
     last_updated = models.DateTimeField(auto_now=True)  # DateTimeField with auto_now=True, this means that the field will be automatically set to now every time the object is saved
     
 class Customer(models.Model):
+    
+    membership = [
+        ('B', 'Bronze'),
+        ('S', 'Silver'),
+        ('G', 'Gold')
+    ]
+    
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True) # EmailField, unique=True means that the value must be unique in the table
     phone = models.CharField(max_length=20)
     birth_date = models.DateField(null=True) # that is a DateField, null=True means that the value can be NULL in the table
+    membership = models.CharField(max_length==1, choices = membership)
     
 
 # By default django models will have primary key as id but if you want tyour own id then you can do it like this "sku = models.CharField(max_length=255, primary_key=True)"
+
+class Order(models.Model):
+    payment_status = [
+        ('P', 'Pending'),
+        ('C', 'Confirmed'),
+        ('F', 'Failed')
+    ]
+    placed_at = models.DateTimeField(auto_now_add=True)
+    payment_status = models.CharField(max_length=1, choices=payment_status)
